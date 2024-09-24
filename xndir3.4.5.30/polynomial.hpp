@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cmath>
 struct Node {
-    int coefficient;
-    int power;
+    int gorcakic;
+    int astichan;
     Node* next;
 
-    Node(int coeff, int pow) : coefficient(coeff), power(pow), next(nullptr) {}
+    Node(int coeff, int pow) : gorcakic(coeff), astichan(pow), next(nullptr) {}
 };
 
 class Polynomial {
@@ -16,8 +16,8 @@ public:
     Polynomial() : head(nullptr) {}
 
    
-    void addTerm(int coefficient, int power) {
-        Node* newNode = new Node(coefficient, power);
+    void addTerm(int gorcakic, int astichan) {
+        Node* newNode = new Node(gorcakic, astichan);
         if (head == nullptr) {
             head = newNode;
         } else {
@@ -28,12 +28,12 @@ public:
             temp->next = newNode;
         }
     }
-    double evaluate(double x) {
+    double arjeqTvyalKetum(double x) {
         double result = 0.0;
         Node* temp = head;
 
         while (temp != nullptr) {
-            result += temp->coefficient * std::pow(x, temp->power);
+            result += temp->gorcakic * std::pow(x, temp->astichan);
             temp = temp->next;
         }
 
@@ -41,22 +41,22 @@ public:
     }
 
 
-    void addOrUpdateTerm(int coefficient, int power) {
+    void addOrUpdateTerm(int gorcakic, int astichan) {
         Node* temp = head;
         Node* prev = nullptr;
 
         
-        while (temp != nullptr && temp->power > power) {
+        while (temp != nullptr && temp->astichan > astichan) {
             prev = temp;
             temp = temp->next;
         }
 
-        if (temp != nullptr && temp->power == power) {
+        if (temp != nullptr && temp->astichan == astichan) {
             
-            temp->coefficient += coefficient;
+            temp->gorcakic += gorcakic;
         } else {
           
-            Node* newNode = new Node(coefficient, power);
+            Node* newNode = new Node(gorcakic, astichan);
             if (prev == nullptr) {
                 newNode->next = head;
                 head = newNode;
@@ -74,20 +74,20 @@ public:
 
         while (temp1 != nullptr || temp2 != nullptr) {
             if (temp1 == nullptr) {
-                result.addTerm(-temp2->coefficient, temp2->power);
+                result.addTerm(-temp2->gorcakic, temp2->astichan);
                 temp2 = temp2->next;
             } else if (temp2 == nullptr) {
-                result.addTerm(temp1->coefficient, temp1->power);
+                result.addTerm(temp1->gorcakic, temp1->astichan);
                 temp1 = temp1->next;
-            } else if (temp1->power == temp2->power) {
-                result.addTerm(temp1->coefficient - temp2->coefficient, temp1->power);
+            } else if (temp1->astichan == temp2->astichan) {
+                result.addTerm(temp1->gorcakic - temp2->gorcakic, temp1->astichan);
                 temp1 = temp1->next;
                 temp2 = temp2->next;
-            } else if (temp1->power > temp2->power) {
-                result.addTerm(temp1->coefficient, temp1->power);
+            } else if (temp1->astichan > temp2->astichan) {
+                result.addTerm(temp1->gorcakic, temp1->astichan);
                 temp1 = temp1->next;
             } else {
-                result.addTerm(-temp2->coefficient, temp2->power);
+                result.addTerm(-temp2->gorcakic, temp2->astichan);
                 temp2 = temp2->next;
             }
         }
@@ -101,9 +101,9 @@ public:
 
         for (Node* temp1 = this->head; temp1 != nullptr; temp1 = temp1->next) {
             for (Node* temp2 = other.head; temp2 != nullptr; temp2 = temp2->next) {
-                int newCoefficient = temp1->coefficient * temp2->coefficient;
-                int newPower = temp1->power + temp2->power;
-                result.addOrUpdateTerm(newCoefficient, newPower);
+                int newgorcakic = temp1->gorcakic * temp2->gorcakic;
+                int newastichan = temp1->astichan + temp2->astichan;
+                result.addOrUpdateTerm(newgorcakic, newastichan);
             }
         }
 
@@ -115,10 +115,10 @@ public:
         Node* temp = head;
         bool first = true;
         while (temp != nullptr) {
-            if (!first && temp->coefficient > 0) {
+            if (!first && temp->gorcakic > 0) {
                 std::cout << " + ";
             }
-            std::cout << temp->coefficient << "x^" << temp->power;
+            std::cout << temp->gorcakic << "x^" << temp->astichan;
             temp = temp->next;
             first = false;
         }

@@ -32,7 +32,7 @@ int main() {
     product.print();
 
     double x = 2.0;
-    double result = poly1.evaluate(x);
+    double result = poly1.arjeqTvyalKetum(x);
     std::cout << "Value of polynomial at x = " << x << " is: " << result << std::endl;
 
     return 0;
